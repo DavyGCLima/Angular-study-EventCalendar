@@ -1,0 +1,6 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.demo-inline-calendar-card {
+  width: 300px;
+  background-color: lightslategray;
+}

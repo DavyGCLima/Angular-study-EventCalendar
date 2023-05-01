@@ -1,0 +1,17 @@
+<div class="footer">
+  <h2>Events</h2>
+  <div class="event-list" cdkDropList (cdkDropListDropped)="onDrop($event)">
+    <div class="event" *ngFor="let event of events" cdkDrag>
+      <h3>{{ event.eventName }}</h3>
+      <p>{{ event.eventDate }}</p>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="editSelectedEvent(event)">
+          Edit
+        </button>
+        <button mat-raised-button color="terciary" (click)="deleteEvent(event)">
+          Delete
+        </button>
+      </mat-card-actions>
+    </div>
+  </div>
+</div>

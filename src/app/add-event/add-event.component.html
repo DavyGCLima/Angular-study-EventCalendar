@@ -1,0 +1,40 @@
+<h1>Event</h1>
+<form class="mat-form-grid" #eventForm="ngForm">
+  <mat-form-field class="mat-grid-item">
+    <mat-label>Event name</mat-label>
+    <input matInput name="eventName" [(ngModel)]="eventName" required />
+    <mat-hint>Min 2 characters</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="mat-grid-item" >
+    <mat-label>Event Description</mat-label>
+    <textarea
+      matInput
+      name="eventDescription"
+      [(ngModel)]="eventDescription"
+      required
+    ></textarea>
+  </mat-form-field>
+  <mat-form-field class="mat-grid-item" >
+    <mat-label>Event Date</mat-label>
+      <input matInput name="eventDate"[(ngModel)]="eventDate"  type="time"/>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    class="mat-grid-item"
+    color="primary"
+    (click)="saveEvent()"
+  >
+    Save
+  </button>
+  <br />
+  <button
+    mat-raised-button
+    class="mat-grid-item"
+    color="secondary"
+    (click)="newEvent()"
+  >
+    New
+  </button>
+  <app-event-footer></app-event-footer>
+</form>
