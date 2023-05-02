@@ -14,8 +14,6 @@ export class AddEventComponent {
   eventDescription: String = '';
   eventDate: String;
 
-  // eventForm: FormGroup;
-
   selectedEvent: CustomEvent | null = null;
 
   events: CustomEvent[] = [];
@@ -30,12 +28,14 @@ export class AddEventComponent {
     const formattedDate = state?.date
       ? this.datePipe.transform(state.date, 'short')
       : null;
+    if (eventService.getDateDayValue() !== state.date) {
+      eventService.setDay({ day: state.date, events: [] });
+    }
     this.eventDate = formattedDate ?? '';
   }
 
   ngOnInit(): void {
     this.eventService.selectedEvent$.subscribe((event) => {
-      console.log('add-event ngOnInit', event);
       this.selectedEvent = event;
       if (event) {
         this.eventDate = event?.eventDate ? event.eventDate : '';
@@ -50,7 +50,10 @@ export class AddEventComponent {
 
     this.eventName = '';
     this.eventDescription = '';
-    this.eventDate = '';
+    this.eventService.getDay().subscribe((day) => {
+      const formattedDate = this.datePipe.transform(day?.day, 'short');
+      this.eventDate = formattedDate ?? '';
+    });
   }
 
   saveEvent() {

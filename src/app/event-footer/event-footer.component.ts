@@ -36,6 +36,6 @@ export class EventFooterComponent {
 
   onDrop(event: CdkDragDrop<any[]>) {
     moveItemInArray(this.events, event.previousIndex, event.currentIndex);
-    // atualizar hora do evento
+    this.eventService.setEvents(this.events);
   }
 }
